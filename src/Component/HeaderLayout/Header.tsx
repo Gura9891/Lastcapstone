@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/configStore";
+import { getProductListApi, ProductModel, DanhMuc } from "../../redux/reducers/productProducer";
 
 type Props = {};
 
 export default function Header({}: Props) {
+
+
+  const {arrProductList} = useSelector((state:RootState)=> state.productProducer)
+  const dispatch:AppDispatch = useDispatch();
+
+  useEffect (()=> {
+    const actionCoursesApi = getProductListApi();
+    dispatch(actionCoursesApi)
+  },[])
+
+const renderDropdown = () => {
+  return arrProductList.map((prod:DanhMuc, index:number)=>{
+    return <li key={index}>
+<a className="dropdown-item" href="#">{prod.tenDanhMuc}</a>
+    </li>
+  })
+}
+
+
+
+
   return (
     <div className="header">
       {/* top header */}
@@ -77,10 +101,8 @@ export default function Header({}: Props) {
             Danh sách khóa học
           </a>
           <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a className="dropdown-item" href="#">Action</a></li>
-            <li><a className="dropdown-item" href="#">Another action</a></li>
-            <li><hr className="dropdown-divider" /></li>
-            <li><a className="dropdown-item" href="#">Something else here</a></li>
+            {renderDropdown()}
+        
           </ul>
         </li>
         <li className="nav-item">

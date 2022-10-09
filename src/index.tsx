@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { store } from "./redux/configStore";
 import HomeTemplate from "./templates/HomeTemplate";
 import "./assets/scss/style.scss";
+import Home from "./pages/HomePage/Home";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -13,7 +14,10 @@ root.render(
   <Provider store={store}>
     <BrowserRouter>
       <Routes>
-        <Route path="" element={<HomeTemplate />}></Route>
+        <Route path='' element={<HomeTemplate />}>
+          <Route index element={<Home/>}></Route>
+          <Route path='' element={<Home />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   </Provider>
