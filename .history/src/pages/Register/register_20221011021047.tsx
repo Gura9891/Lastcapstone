@@ -14,7 +14,7 @@ import { AppDispatch } from "../../redux/configStore";
 
 type Props = {};
 
-export default function Register({}: Props) {
+export default function register({}: Props) {
     const dispatch:AppDispatch = useDispatch();
     const [passwordType, setPassWordType] = useState("password");
     const [passwordReType, setPassWordReType] = useState("password");
@@ -98,7 +98,7 @@ export default function Register({}: Props) {
     return (
       <div className="d-flex ">
         <div className="col-6">
-          <img src={image} alt="..." className="vh-100"  />
+          <img src={image} alt="..." className="w-100" height={1200} />
         </div>
         <section className="register col-6">
           <div className="contain">
@@ -145,9 +145,9 @@ export default function Register({}: Props) {
                 </div>
                 <button type="button" style={{background:'transparent'}} onClick={togglePassword}>
                   {passwordType === "password" ? (
-                    <i className="fa-solid fa-exclamation" ></i>
+                    <i className="bi bi-eye-slash" ></i>
                   ) : (
-                    <i className="fa-solid fa-exclamation" ></i>
+                    <i className="bi bi-eye" ></i>
                   )}
                 </button>
               </div>
@@ -166,9 +166,9 @@ export default function Register({}: Props) {
                 </div>
                 <button type="button" style={{background:'transparent'}} onClick={toggleRePassword}>
                   {passwordReType === "password" ? (
-             <i className="fa-solid fa-exclamation" ></i>
-             ) : (
-               <i className="fa-solid fa-exclamation" ></i>
+                    <i className="bi bi-eye-slash" ></i>
+                  ) : (
+                    <i className="bi bi-eye" ></i>
                   )}
                 </button>
               </div>

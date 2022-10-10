@@ -55,12 +55,12 @@ export const { getAllProductAction, getAllProductListAction } = productReducer.a
 
 export default productReducer.reducer;
 
-//API
+
 
 export const getProductApi = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      const result = await http.get("/QuanLyKhoaHoc/LayDanhSachKhoaHoc?MaNhom=GP01");
+      const result = await http.get("/QuanLyKhoaHoc/LayDanhSachKhoaHoc");
       console.log(result.data);
       let arrCourses: ProductModel[] = result.data;
       const action = getAllProductAction(arrCourses);

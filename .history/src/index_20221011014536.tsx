@@ -12,8 +12,6 @@ import HomeTemplate from "./templates/HomeTemplate";
 import "./assets/scss/style.scss";
 import Home from "./pages/HomePage/Home";
 import { createBrowserHistory } from "history";
-import Register from "./pages/Register/Register";
-
 
 export const history = createBrowserHistory({ window });
 
@@ -25,9 +23,8 @@ root.render(
     <HistoryRouter history={history}>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route path="" element={<Home />}></Route>
           <Route index element={<Home />}></Route>
-      <Route path="register" element={<Register />}></Route>
+          <Route path="" element={<Home />}></Route>
         </Route>
       </Routes>
     </HistoryRouter>

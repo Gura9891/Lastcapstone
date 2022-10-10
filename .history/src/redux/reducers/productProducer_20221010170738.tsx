@@ -55,7 +55,7 @@ export const { getAllProductAction, getAllProductListAction } = productReducer.a
 
 export default productReducer.reducer;
 
-//API
+
 
 export const getProductApi = () => {
   return async (dispatch: AppDispatch) => {

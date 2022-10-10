@@ -5,15 +5,13 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  unstable_HistoryRouter as HistoryRouter,
+
 } from "react-router-dom";
 import { store } from "./redux/configStore";
 import HomeTemplate from "./templates/HomeTemplate";
 import "./assets/scss/style.scss";
 import Home from "./pages/HomePage/Home";
 import { createBrowserHistory } from "history";
-import Register from "./pages/Register/Register";
-
 
 export const history = createBrowserHistory({ window });
 
@@ -22,12 +20,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <HistoryRouter history={history}>
+    <HistoryRouter>
       <Routes>
         <Route path="" element={<HomeTemplate />}>
-          <Route path="" element={<Home />}></Route>
           <Route index element={<Home />}></Route>
-      <Route path="register" element={<Register />}></Route>
+          <Route path="" element={<Home />}></Route>
         </Route>
       </Routes>
     </HistoryRouter>
