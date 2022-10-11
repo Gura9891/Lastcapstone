@@ -12,8 +12,9 @@ import HomeTemplate from "./templates/HomeTemplate";
 import "./assets/scss/style.scss";
 import Home from "./pages/HomePage/Home";
 import { createBrowserHistory } from "history";
-import Register from "./pages/Register/register";
+
 import CoursesList from "./pages/CoursesList/CoursesList";
+import Register from "./pages/Register/Register";
 
 
 export const history = createBrowserHistory({ window });
@@ -28,7 +29,7 @@ root.render(
         <Route path="" element={<HomeTemplate />}>
           <Route path="" element={<Home />}></Route>
           <Route index element={<Home />}></Route>
-          <Route path="register" element={<Register />}></Route>
+        <Route path="register" element={<Register />}></Route>
           <Route path="course">
             <Route path=":maDanhMuc" element={<CoursesList />}></Route>
           </Route>
