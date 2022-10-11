@@ -4,12 +4,13 @@ import userReducer from "./reducers/userReducer";
 
 export const store = configureStore({
   reducer: {
-    numberReducer: (state, action:PayloadAction<number>)=> {
-        return 1;
+    numberReducer: (state, action: PayloadAction<number>) => {
+      return 1;
     },
     productProducer: productProducer,
     userReducer: userReducer,
-  },devTools:true
+  },
+  devTools: true,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
