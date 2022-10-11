@@ -36,6 +36,7 @@ export interface NguoiTAO {
 const initialState:any = {
   arrProduct: [],
   arrProductList: [],
+  coursesList: []
 };
 
 const productReducer = createSlice({
@@ -48,10 +49,13 @@ const productReducer = createSlice({
     getAllProductListAction: (state, action: PayloadAction<ProductModel[]>) => {
       state.arrProductList = action.payload;
     },
+    getAllCourseListAction : (state, action: PayloadAction<ProductModel[]>) => {
+      state.coursesList = action.payload;
+    }
   },
 });
 
-export const { getAllProductAction, getAllProductListAction } = productReducer.actions;
+export const { getAllProductAction, getAllProductListAction,getAllCourseListAction } = productReducer.actions;
 
 export default productReducer.reducer;
 
@@ -86,3 +90,19 @@ export const getProductListApi = () => {
     }
   };
 };
+
+export const getCourseListApi = (maDanhMuc : any) => {
+  return async (dispatch :AppDispatch) => {
+    try {
+      const result = await http.get(`https://elearningnew.cybersoft.edu.vn/api/QuanLyKhoaHoc/LayKhoaHocTheoDanhMuc?maDanhMuc=${maDanhMuc}`)
+      console.log(result.data);
+      let listCourse: ProductModel[] = result.data;
+      const action = getAllCourseListAction(listCourse);
+      dispatch(action)
+    } 
+     catch (err) {
+       console.log({err});
+       
+     }
+  }
+}
