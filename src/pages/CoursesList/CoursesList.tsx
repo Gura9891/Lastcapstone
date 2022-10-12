@@ -24,7 +24,7 @@ export default function CoursesList({}: Props) {
 
     const actionApi = getCourseListApi(maDanhMuc);
     dispatch(actionApi);
-  }, []);
+  }, [params.maDanhMuc]);
 
   const renderCourseList = () => {
     return coursesList.map((prod: ProductModel, index: number) => {

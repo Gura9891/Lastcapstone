@@ -24,6 +24,7 @@ export interface DanhMucKhoaHoc {
 export interface DanhMuc {
   maDanhMuc: string;
   tenDanhMuc: string;
+
 }
 
 export interface NguoiTAO {
@@ -95,7 +96,7 @@ export const getProductListApi = () => {
   };
 };
 
-export const getCourseListApi = (maDanhMuc: any) => {
+export const getCourseListApi = (maDanhMuc: any ) => {
   return async (dispatch: AppDispatch) => {
     try {
       const result = await http.get(

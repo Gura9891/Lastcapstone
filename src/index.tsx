@@ -14,7 +14,7 @@ import Home from "./pages/HomePage/Home";
 import { createBrowserHistory } from "history";
 
 import CoursesList from "./pages/CoursesList/CoursesList";
-import Register from "./pages/Register/Register";
+import Register from "./pages/Register/register";
 import Login from "./pages/LoginPage/Login";
 
 export const history = createBrowserHistory({ window });
