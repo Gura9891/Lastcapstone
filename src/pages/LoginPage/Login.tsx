@@ -53,8 +53,9 @@ export default function Login({}: Props) {
         .matches(regexPass, "Mật khẩu không đúng định dạng"),
     }),
     onSubmit: (values) => {
-      console.log(values);
-      dispatch(LoginApi(values));
+      // console.log(values);
+      const action = LoginApi(values)
+      dispatch(action);
     },
   });
 
@@ -126,7 +127,7 @@ export default function Login({}: Props) {
                 </button>
               </div>
               <div className="signUp">
-                <NavLink to="/dangky">
+                <NavLink to="/Register">
                   <button type="button" className="btn text-uppercase">
                     Đăng ký
                   </button>

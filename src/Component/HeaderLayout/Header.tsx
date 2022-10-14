@@ -1,6 +1,8 @@
+import useSelection from "antd/lib/table/hooks/useSelection";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Login from "../../pages/LoginPage/Login";
 import { AppDispatch, RootState } from "../../redux/configStore";
 import { getProductListApi, ProductModel, DanhMuc } from "../../redux/reducers/productProducer";
 
@@ -9,9 +11,21 @@ type Props = {};
 export default function Header({ }: Props) {
 
 
-  const { arrProductList } = useSelector((state: RootState) => state.productProducer)
+  const { arrProductList } = useSelector((state: RootState) => state.productProducer);
+  const {userLogin} = useSelector((state: RootState) => state.userReducer);
   const dispatch: AppDispatch = useDispatch();
-  
+  console.log(userLogin);
+  const renderLoginNavItem = () => {
+    if (userLogin === null) {
+      console.log(123);
+      return <NavLink to="/login">Login</NavLink>;
+    }
+    return (
+      <NavLink to="/profile" style={{textDecoration:'none'}} >
+        <i className="fa-solid fa-user"></i> {userLogin.hoTen}
+      </NavLink>
+    );
+  };
 
   useEffect(() => {
     const actionCoursesApi = getProductListApi();
@@ -108,11 +122,8 @@ export default function Header({ }: Props) {
 
                 </ul>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Login</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" href="#" tabIndex={-1} aria-disabled="true">Register</a>
+              <li className="nav-link" style={{color:'black'}}>
+                {renderLoginNavItem()}
               </li>
             </ul>
             <form className="d-flex">

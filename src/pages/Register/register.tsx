@@ -91,7 +91,7 @@ export default function Register({}: Props) {
   return (
     <div className="d-flex ">
       <div className="col-6">
-        <img src={image} alt="..." className="w-100" height={1200} />
+        <img src={image} alt="..." className="w-100" height={1000} />
       </div>
       <section className="register col-6">
         <div className="contain">
