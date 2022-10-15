@@ -10,7 +10,8 @@ import {
   USER_LOGIN,
 } from "../../util/setting";
 import { AppDispatch } from "../configStore";
-
+import { history } from "../../index";
+import { string } from "yup";
 export interface UserRegister {
   taiKhoan: string;
   matKhau: string;
@@ -48,7 +49,7 @@ export interface ChiTietKhoaHocGhiDanh {
 }
 
 const initialState: any = {
-  userLogin: getStoreJson(USER_LOGIN) || {},
+  userLogin: getStoreJson(USER_LOGIN),
 };
 
 const userReducer = createSlice({
@@ -79,6 +80,8 @@ export const registerApi = (userRes: UserRegister) => {
         }, 1000);
       };
       Mess();
+      history.push("/login");
+      console.log(result);
     } catch (err) {
       console.log(err);
     }
@@ -88,10 +91,13 @@ export const registerApi = (userRes: UserRegister) => {
 export const LoginApi = (userLogin: userLogin) => {
   return async (dispatch: AppDispatch) => {
     try {
-      const result = await http.post("/QuanLyNguoiDung/DangNhap", userLogin);
+      const result:any = await http.post("/QuanLyNguoiDung/DangNhap", userLogin);
       console.log(result);
-      setCookie(ACCESS_TOKEN, result.data.content.accessToken, 30);
-      setStore(ACCESS_TOKEN, result.data.content.accessToken);
+      setCookie(ACCESS_TOKEN, result.data.accessToken, 30);
+      setStore(ACCESS_TOKEN, result.data.accessToken);
+      // history.push("/profile");
+
+     
       dispatch(getProfileApi());
     } catch (err) {
       console.log(err);
@@ -104,11 +110,26 @@ export const getProfileApi = () => {
     try {
       const result = await http.post("/QuanLyNguoiDung/ThongTinNguoiDung");
       console.log(result);
-      const action = getProfileAction(result.data.content);
+      const action = getProfileAction(result.data);
       dispatch(action);
-      setStoreJson(USER_LOGIN, result.data.content);
+      setStoreJson(USER_LOGIN, result.data);
     } catch (err) {
       console.log(err);
     }
   };
 };
+
+// export const updateProfileApi = (userUpdate) => {
+//   return async (dispatch) => {
+//     try {
+//       console.log(userUpdate)
+//       const result = await http.post("/QuanLyNguoiDung/CapNhatThongTinNguoiDung");
+//       console.log("updateProfileApi",result);
+//       dispatch(getProfileApi());
+//       alert('Cập nhật dữ liệu thành công!')
+//     }catch(err){
+//       console.log(err);
+//       alert('Cập nhật dữ liệu không thành công!');
+//     }
+//   };
+// };

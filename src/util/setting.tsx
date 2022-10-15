@@ -72,7 +72,7 @@ http.interceptors.request.use(
     const token = getStore(ACCESS_TOKEN);
     if (config.headers) {
       config.headers = {
-        Authorization: `Bearer  + ${token} `,
+        Authorization: `Bearer ${token} `,
         TokenCybersoft: TOKEN_CYBERSOFT,
       };
     }
